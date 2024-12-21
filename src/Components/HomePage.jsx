@@ -49,7 +49,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className='d-flex justify-content-center align-items-center'>
-          <Link className='btn btn-warning btn-lg' to={window.location.origin + "/adminportal/games"}>Back to home</Link>
+          <Link className='btn btn-warning btn-lg' to={window.location.origin + "/games"}>Back to home</Link>
         </div>
       </div>
     </div>
