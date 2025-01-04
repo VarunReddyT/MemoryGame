@@ -8,7 +8,6 @@ export default function HomePage() {
   const handleSetSelection = (setId) => {
     setSelectedSetId(setId);
   };
-
   return (
     <div className='d-flex align-items-center justify-content-center home'>
       <div className='container'>
