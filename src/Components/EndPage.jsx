@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { GameContext } from './GameContext.jsx';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function EndPage() {
