@@ -5,7 +5,6 @@ import homeImage from '../assets/images/img1.jpg';
 
 export default function HomePage() {
   const { setSelectedSetId } = useContext(GameContext);
-
   const handleSetSelection = (setId) => {
     setSelectedSetId(setId);
   };
