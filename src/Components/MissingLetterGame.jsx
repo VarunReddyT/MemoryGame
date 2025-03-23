@@ -5,11 +5,13 @@ import { GameContext } from './GameContext.jsx';
 import { Popover } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { useSearchParams } from 'react-router-dom';
 export default function MissingLetterGame() {
   const navigate = useNavigate();
   const { selectedSetId, timer, tries, setTries, setTimer } = useContext(GameContext);
   const [wordsData, setWordsData] = useState(null);
+  const [params] = useSearchParams();
+  const gameId = params.get('gameId');
 
   useEffect(() => {
     if (selectedSetId === null) {
@@ -147,7 +149,7 @@ export default function MissingLetterGame() {
       const endTime = new Date();
       const timeDiff = (endTime - startTime) / 1000;
       setTimer(timeDiff);
-      navigate('/end');
+      navigate(`/end?gameId=${gameId}`);
     }
   };
 
