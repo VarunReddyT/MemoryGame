@@ -1,25 +1,31 @@
 import React, { useContext, useEffect } from 'react';
 import { GameContext } from './GameContext.jsx';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
 export default function EndPage() {
   const { tries, timer } = useContext(GameContext);
+  const [params] = useSearchParams();
 
   useEffect(() => {
     const sendGameData = async () => {
       const hasSentGameData = localStorage.getItem('flag');
       if (hasSentGameData == 'true') {
         try {
-          const gameId = localStorage.getItem('gameId');
+          const gameId = params.get('gameId');
           const childId = localStorage.getItem('childId');
-          await axios.put(`https://jwlgamesbackend.vercel.app/api/caretaker/${gameId}/${childId}`, {
+          const therapistId = localStorage.getItem('therapistId');
+
+          await axios.post(`https://totalapi.joywithlearning.com/api/data/submitGameDetails/${gameId}/${childId}`, {
             tries: tries,
             timer: timer,
-            status: true,
+            status: "completed",
+            therapistId: therapistId,
+            datePlayed : new Date()
           },
             {
               headers: {
-                "Authorization": `${localStorage.getItem('logintoken')}`
+                "Authorization": `${localStorage.getItem('token')}`
               }
             }
           );
