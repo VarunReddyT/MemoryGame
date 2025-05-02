@@ -6,6 +6,7 @@ import { Popover } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
+import { CaptureElements, endCapture } from '../hooks/UseCapture.js';
 export default function MissingLetterGame() {
   const navigate = useNavigate();
   const { selectedSetId, timer, tries, setTries, setTimer } = useContext(GameContext);
@@ -149,6 +150,7 @@ export default function MissingLetterGame() {
       const endTime = new Date();
       const timeDiff = (endTime - startTime) / 1000;
       setTimer(timeDiff);
+      endCapture();
       navigate(`/end?gameId=${gameId}`);
     }
   };
@@ -195,6 +197,7 @@ export default function MissingLetterGame() {
   return (
     <div>
       <div className='justify-content-center d-flex'>
+        <CaptureElements></CaptureElements>
         <div className='head'>
           <h1 className="text-center mt-2">Find the Missing Letters</h1>
           <div className="d-flex mt-4 inst">

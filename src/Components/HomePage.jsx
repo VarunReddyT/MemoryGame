@@ -1,18 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GameContext } from './GameContext.jsx';
 import homeImage from '../assets/images/img1.jpg';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { startCapture,assignInterval,assignUploadUrl } from '../hooks/UseCapture.js';
 export default function HomePage() {
   const { setSelectedSetId } = useContext(GameContext);
   const [params] = useSearchParams();
   const gameId = params.get('gameId');
   const navigate = useNavigate();
   const handleSetSelection = (setId) => {
+    startCapture();
     setSelectedSetId(setId);
     navigate(`/play?gameId=${gameId}`);
   };
+  useEffect(() => {
+    assignUploadUrl("http://localhost:4001/child/uploads/2");
+    assignInterval(2000);
+    
+  },[]);
   return (
     <div className='d-flex align-items-center justify-content-center home'>
       <div className='container'>
