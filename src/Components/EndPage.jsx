@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { GameContext } from './GameContext.jsx';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
-
+import { endCapture } from '../hooks/UseCapture.js';
 export default function EndPage() {
   const { tries, timer } = useContext(GameContext);
   const [params] = useSearchParams();
