@@ -16,8 +16,12 @@ export default function HomePage() {
     navigate(`/play?gameId=${gameId}`);
   };
   useEffect(() => {
-    assignUploadUrl("http://localhost:4001/child/uploads/2");
-    assignInterval(2000);
+    const gameIdFromStorage = localStorage.getItem('gameId');
+    const childIdFromStorage = localStorage.getItem('childId');
+    if (gameIdFromStorage && childIdFromStorage) {
+      assignUploadUrl(`https://totalapi.joywithlearning.com/api/data/imagecapture/${gameIdFromStorage}/${childIdFromStorage}`);
+    }
+    assignInterval(5000);
     
   },[]);
   return (
