@@ -38,7 +38,7 @@ export default function MissingLetterGame() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const r = await axios.get('https://api.joywithlearning.com/api/memorygame/getGameData/1');
+        const r = await axios.get(`https://api.joywithlearning.com/api/memorygame/getGameData/${selectedSetId}`);
         setWordsData(r.data.words);
       } catch (err) {
         console.log(err);
